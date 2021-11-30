@@ -34,3 +34,5 @@
 # Directories
 bin
 obj
+Output
+.vs
