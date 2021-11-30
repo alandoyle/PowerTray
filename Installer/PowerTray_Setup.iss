@@ -75,3 +75,6 @@ Source: "..\bin\PowerTray.exe"; DestDir: "{sys}";
 [Registry]
 Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer"; ValueType: dword; ValueName: "HideSCAPower"; ValueData: "$00000001"; Flags: uninsdeletekey
 Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "PowerTray"; ValueData: "{sys}\PowerTray.exe"; Flags: uninsdeletekey
+
+[Run]
+Filename: "{sys}\powercfg.exe"; Parameters: "-duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61"; WorkingDir: "{sys}"; Flags: runhidden; Description: "Enable 'Ultimate Performance'"; StatusMsg: "Enabling 'Ultimate Performance' Power Plan"
