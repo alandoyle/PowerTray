@@ -73,5 +73,5 @@ Source: "..\bin\PowerTray.exe"; DestDir: "{sys}";
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
-; Imported Registry File: "C:\DONE\HideSCAPower.reg"
 Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer"; ValueType: dword; ValueName: "HideSCAPower"; ValueData: "$00000001"; Flags: uninsdeletekey
+Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "PowerTray"; ValueData: "{sys}\PowerTray.exe"; Flags: uninsdeletekey

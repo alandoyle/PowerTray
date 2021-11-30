@@ -1,5 +1,5 @@
 /******************************************************/
-/* Auto-generated [23:01:26 2021/11/30] - DO NOT EDIT */
+/* Auto-generated [23:22:28 2021/11/30] - DO NOT EDIT */
 /******************************************************/
 
 /*******************************************************************************************/
@@ -31,9 +31,9 @@ namespace PowerTray
 
 		public const string StartYear = "2020";
 		public const string BuiltYear = "2021";
-		public const string BuildDate = " 30 2021 23:01:26";
+		public const string BuildDate = " 30 2021 23:22:28";
 		public const string BuildDateShort = "30/11/2021";
-		public const string BuildDateComp = "202111302301";
+		public const string BuildDateComp = "202111302322";
 		public const string BuiltBy = "aland";
 	}
 }
