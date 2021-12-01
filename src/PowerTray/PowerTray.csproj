@@ -35,7 +35,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>green-almost-full-multi-size.ico</ApplicationIcon>
+    <ApplicationIcon>green-full-battery-multi-size.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -96,6 +96,7 @@
     <Compile Include="frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalSettings.cs" />
     <Compile Include="NotifyTrayAppContext.cs" />
     <Compile Include="PowerManager.cs" />
     <Compile Include="PowerTrayAppContext.cs" />
@@ -178,6 +179,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="green-almost-full-multi-size.ico" />
+    <Content Include="green-full-battery-multi-size.ico" />
+    <None Include="res\plug-multi-size.ico" />
     <None Include="res\red-full-battery-multi-size1.ico" />
     <None Include="res\red-almost-full-multi-size1.ico" />
     <None Include="res\red-75-percent-multi-size1.ico" />

@@ -23,14 +23,14 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace PowerTray
 {
     public class PowerTrayAppContext : NotifyTrayAppContext, NotifyIconCallback
     {
-        private PowerManager powerManager;
+        private PowerManager  powerManager;
+        private LocalSettings Settings;
 
         public PowerTrayAppContext()
         {
@@ -48,24 +48,32 @@ namespace PowerTray
             SetNotifyContextMenuStripOpening(OnContextMenuStripOpening);
             SetNotifyVisibility(true);
 
-            PowerPlan plan;
-            RegistryKey key;
-            key = Registry.CurrentUser.OpenSubKey(@"Software\PowerTray");
-            plan = powerManager.GetPlans().Find(p => (p.Guid == Guid.Parse((String)key.GetValue("GUID"))));
-            key.Close();
+            Settings = new LocalSettings();
+            Settings.Load(ref powerManager);
 
-            powerManager.SetActive(plan);
-
-            UpdateIcon();
+            UpdateIcon(true);
         }
 
-        public void UpdateIcon()
+        public void UpdateIcon(bool bUpdateBalloon)
         {
-            PowerPlan currentPlan  = powerManager.GetCurrentPlan();
-            bool      isCharging   = powerManager.IsCharging();
-            int       percentValue = powerManager.GetChargeValue();
-            Icon      icon;
+            PowerStatus pwrStatus    = SystemInformation.PowerStatus;
+            PowerPlan   currentPlan  = powerManager.GetCurrentPlan();
+            bool        isCharging   = powerManager.IsCharging();
+            int         percentValue = powerManager.GetChargeValue();
+            Icon        icon;
 
+            // Change the icon if the system doesn't have a battery.
+            //
+            if (pwrStatus.BatteryChargeStatus == BatteryChargeStatus.NoSystemBattery)
+            {
+                icon = Properties.Resources.plug_multi_size;
+                SetNotifyIcon(icon);
+                SetNotifyText("Running on AC\n- " + currentPlan.Name, bUpdateBalloon);
+                return;
+            }
+
+            // Work out % charge on battery
+            //
             if (percentValue >= 99)
             {
                 icon = Properties.Resources.white_full_battery;
@@ -97,7 +105,7 @@ namespace PowerTray
 
             SetNotifyIcon(icon);
             SetNotifyText((isCharging ? (percentValue == 100 ? "Fully Charged " : "Charging ") : "") +
-                            "(" + percentValue + "%)\n- " + currentPlan.Name);
+                            "(" + percentValue + "%)\n- " + currentPlan.Name, bUpdateBalloon);
         }
    
         private ContextMenuStrip MainContextMenu()
@@ -114,6 +122,7 @@ namespace PowerTray
                 item.Click += delegate (object sender, EventArgs args)
                 {
                     powerManager.SetActive(pp);
+                    Settings.Save(pp);
                 };
                 item.Checked = (currentPlan == p);
                 ContextMenuApp.Items.Add(item);
@@ -215,7 +224,7 @@ namespace PowerTray
 
         private void TimerHandler(object sender, EventArgs e)
         {
-            UpdateIcon();
+            UpdateIcon(false);
         }
 
         #endregion

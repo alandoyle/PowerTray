@@ -24,7 +24,7 @@ namespace PowerTray
 {
     public interface NotifyIconCallback
     {
-        void UpdateIcon();
+        void UpdateIcon(bool bUpdateBalloon);
     }
 
     public class NotifyTrayAppContext : ApplicationContext
@@ -53,11 +53,15 @@ namespace PowerTray
         /// Sets the tooltip for the SysTray icon
         /// </summary>
         /// <param name="text"></param>
-        public void SetNotifyText(string text)
+        public void SetNotifyText(string text, bool bUpdateBalloon)
         {
             notifyIcon.Text = text;
             notifyIcon.Visible = true;
-            notifyIcon.ShowBalloonTip(30000, Version.FriendlyName, text, ToolTipIcon.Info);
+
+            if (bUpdateBalloon)
+            {
+                notifyIcon.ShowBalloonTip(30000, Version.FriendlyName, text, ToolTipIcon.Info);
+            }
         }
 
         /// <summary>

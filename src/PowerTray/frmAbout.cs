@@ -45,7 +45,6 @@ namespace PowerTray
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            powerTrayAppContext.AboutOpened = false;
             Close();
         }
 
@@ -63,6 +62,11 @@ namespace PowerTray
         private void lblName_DoubleClick(object sender, EventArgs e)
         {
             powerTrayAppContext.ExitThread();
+        }
+
+        private void frmAbout_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            powerTrayAppContext.AboutOpened = false;
         }
 
         #region Win32 Details

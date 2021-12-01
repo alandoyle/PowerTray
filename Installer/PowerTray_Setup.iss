@@ -16,7 +16,7 @@
 #define MyAppVerName         MyAppName + " " + MySimpleAppVersion
 #define MyAppPublisher       "Alan Doyle"
 #define MyAppCopyright       "© 2020-" + GetDateTimeString('yyyy', '', '') + " " + MyAppPublisher
-#define MyAppURL             "https://github.com/AlanDoyle/PowerTray"
+#define MyAppURL             "https://github.com/alandoyle/PowerTray"
 
 #pragma message "*** Version info ***
 #pragma message "Detailed version info: " + MyAppVersion
@@ -41,7 +41,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 AppCopyright={#MyAppCopyright}
-DefaultDirName={sys}
+DefaultDirName={commonpf}\PowerTray
 ;LicenseFile=text\GPLv3.TXT
 OutputDir=Output
 OutputBaseFilename={#MyAppInstall}
@@ -57,24 +57,37 @@ UninstallDisplayName={#MyAppName} (Remove Only)
 AlwaysRestart=True
 RestartIfNeededByRun=False
 AllowCancelDuringInstall=False
-CreateAppDir=False
 UsePreviousGroup=False
 WizardStyle=modern
 DisableStartupPrompt=False
 DisableWelcomePage=False
 ArchitecturesInstallIn64BitMode=x64
 ArchitecturesAllowed=x64
+DisableDirPage=yes
+AllowUNCPath=False
+AppendDefaultDirName=False
+LicenseFile=..\LICENSE
+AlwaysShowDirOnReadyPage=True
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "..\bin\PowerTray.exe"; DestDir: "{sys}";
+Source: "..\bin\PowerTray.exe"; DestDir: "{app}";
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+
+[InstallDelete]
+Type: files; Name: "{sys}\PowerTray.exe"
 
 [Registry]
 Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer"; ValueType: dword; ValueName: "HideSCAPower"; ValueData: "$00000001"; Flags: uninsdeletekey
-Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "PowerTray"; ValueData: "{sys}\PowerTray.exe"; Flags: uninsdeletekey
+Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "PowerTray"; ValueData: "{app}\PowerTray.exe"; Flags: uninsdeletekey
 
 [Run]
-Filename: "{sys}\powercfg.exe"; Parameters: "-duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61"; WorkingDir: "{sys}"; Flags: runhidden; Description: "Enable 'Ultimate Performance'"; StatusMsg: "Enabling 'Ultimate Performance' Power Plan"
+Filename: "{sys}\powercfg.exe"; Parameters: "-duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61"; WorkingDir: "{sys}"; Flags: runhidden; Description: "Enable 'Ultimate Performance'"; StatusMsg: "Enabling 'Ultimate Performance' Power Plan"; Check: Not IsPPInstalled
+
+[Code]
+function IsPPInstalled(): Boolean;
+begin
+  Result := RegValueExists(HKEY_LOCAL_MACHINE, 'SYSTEM\CurrentControlSet\Control\Power\User\Default\PowerSchemes\e9a42b02-d5df-448d-aa00-03f14749eb61', 'FriendlyName');
+end;

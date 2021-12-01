@@ -14,8 +14,7 @@
  * You should have received a copy of the GNU General Public License 
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-//@@@ https://www.top-password.com/blog/fix-battery-icon-missing-from-windows-10-taskbar/
-using Microsoft.Win32;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,13 +116,7 @@ namespace PowerTray
         public void SetActive(PowerPlan plan)
         {
             PowerSetActiveScheme(IntPtr.Zero, ref plan.Guid);
-            notifyIconCallback.UpdateIcon();
-
-            RegistryKey key;
-            key = Registry.CurrentUser.CreateSubKey(@"Software\PowerTray");
-            key.SetValue("PowerPlan", plan.Name);
-            key.SetValue("GUID", plan.Guid);
-            key.Close();
+            notifyIconCallback.UpdateIcon(true);
         }
 
         public IEnumerable<Guid> GetAll()
