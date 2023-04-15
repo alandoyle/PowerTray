@@ -1,6 +1,6 @@
 ﻿/* 
  * This file is part of PowerTray <https://github.com/alandoyle/PowerTray>
- * Copyright (c) 2020-2021 Alan Doyle.
+ * Copyright (c) 2020-2023 Alan Doyle.
  * 
  * This program is free software: you can redistribute it and/or modify  
  * it under the terms of the GNU General Public License as published by  
@@ -37,21 +37,40 @@ namespace PowerTray
 
     public class PowerManager
     {
-        NotifyIconCallback notifyIconCallback;
-        List<PowerPlan>    plans;
-
-        public enum AccessFlags : uint
-        {
-            ACCESS_SCHEME = 16,
-            ACCESS_SUBGROUP = 17,
-            ACCESS_INDIVIDUAL_SETTING = 18
-        }
-
-        public PowerManager(NotifyIconCallback notifyCallback)
+        public PowerManager(INotifyIconCallback notifyCallback, bool fShowBalloonTips)
         {
             notifyIconCallback = notifyCallback;
-
             plans = new List<PowerPlan>();
+            showBalloonTips = fShowBalloonTips;
+            GeneratePowerPlanList();
+        }
+
+        public PowerPlan GetPlanByName(string strPlanName)
+        {
+             foreach (PowerPlan p in GetPlans())
+            {
+                if (p.Name == strPlanName) { return (p); }
+            }
+            return (GetPlanByName("Balanced"));
+        }
+
+        public Guid GetActiveGuid()
+        {
+            Guid ActiveScheme = Guid.Empty;
+            if (PowerGetActiveScheme((IntPtr)null, out IntPtr ptr) == 0)
+            {
+                ActiveScheme = (Guid)Marshal.PtrToStructure(ptr, typeof(Guid));
+                if (ptr != null)
+                {
+                    Marshal.FreeHGlobal(ptr);
+                }
+            }
+            return (ActiveScheme);
+        }
+
+        public void GeneratePowerPlanList()
+        {
+            plans.Clear();
             foreach (Guid guidPlan in GetAll())
             {
                 PowerPlan plan = new PowerPlan(ReadFriendlyName(guidPlan), guidPlan);
@@ -66,7 +85,6 @@ namespace PowerTray
             IntPtr pSizeName = Marshal.AllocHGlobal((int)sizeName);
 
             string friendlyName;
-
             try
             {
                 PowerReadFriendlyName(IntPtr.Zero, ref schemeGuid, IntPtr.Zero, IntPtr.Zero, pSizeName, ref sizeName);
@@ -76,8 +94,7 @@ namespace PowerTray
             {
                 Marshal.FreeHGlobal(pSizeName);
             }
-
-            return friendlyName;
+            return (friendlyName);
         }
 
         public int GetChargeValue()
@@ -89,69 +106,62 @@ namespace PowerTray
         public bool IsCharging()
         {
             PowerStatus pwrStatus = SystemInformation.PowerStatus;
-            return pwrStatus.PowerLineStatus == PowerLineStatus.Online;
+            return ((pwrStatus.PowerLineStatus == PowerLineStatus.Online) &&
+                    (pwrStatus.BatteryChargeStatus != BatteryChargeStatus.NoSystemBattery));
         }
 
-        public PowerPlan GetCurrentPlan()
+        internal bool IsOnBattery()
         {
-            return GetPlans().Find(p => (p.Guid == GetActiveGuid()));
-        }
-
-        public Guid GetActiveGuid()
-        {
-            Guid ActiveScheme = Guid.Empty;
-            IntPtr ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)));
-
-            if (PowerGetActiveScheme((IntPtr)null, out ptr) == 0)
-            {
-                ActiveScheme = (Guid)Marshal.PtrToStructure(ptr, typeof(Guid));
-                if (ptr != null)
-                {
-                    Marshal.FreeHGlobal(ptr);
-                }
-            }
-            return ActiveScheme;
+            PowerStatus pwrStatus = SystemInformation.PowerStatus;
+            return ((pwrStatus.PowerLineStatus != PowerLineStatus.Online) &&
+                    (pwrStatus.BatteryChargeStatus != BatteryChargeStatus.NoSystemBattery));
         }
 
         public void SetActive(PowerPlan plan)
         {
             PowerSetActiveScheme(IntPtr.Zero, ref plan.Guid);
-            notifyIconCallback.UpdateIcon(true);
+            notifyIconCallback.UpdateIcon(showBalloonTips);
         }
 
         public IEnumerable<Guid> GetAll()
         {
-            var schemeGuid = Guid.Empty;
-
+            Guid schemeGuid = Guid.Empty;
             uint sizeSchemeGuid = (uint)Marshal.SizeOf(typeof(Guid));
             uint schemeIndex = 0;
 
-            while (PowerEnumerate(IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, (uint)AccessFlags.ACCESS_SCHEME, schemeIndex, ref schemeGuid, ref sizeSchemeGuid) == 0)
+            while (PowerEnumerate(IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, 
+                ACCESS_SCHEME, schemeIndex, 
+                ref schemeGuid, ref sizeSchemeGuid) == 0)
             {
                 yield return schemeGuid;
                 schemeIndex++;
             }
         }
 
-        public List<string> GetAllNames()
-        {
-            List<string> PowerPlansNames = new List<string>();
-            var guidPlans = GetAll();
+        public PowerPlan GetCurrentPlan() => GetPlans().Find(p => (p.Guid == GetActiveGuid()));
 
-            foreach (Guid guidPlan in guidPlans)
-            {
-                PowerPlansNames.Add(ReadFriendlyName(guidPlan));
-            }
+        public PowerPlan GetACPlan() => ACPlan;
 
-            PowerPlansNames.Sort();
+        public PowerPlan GetBatteryPlan() => BatteryPlan;
 
-            return (PowerPlansNames);
-        }
+        public void SetACPlan(PowerPlan plan) => ACPlan = plan;
 
-        public List<PowerPlan> GetPlans()
-        {
-            return (plans);
-        }
+        public void SetBatteryPlan(PowerPlan plan) => BatteryPlan = plan;
+
+        public List<PowerPlan> GetPlans() => (plans);
+
+        internal void SetBalloonTips(bool fShowBalloonTips) => showBalloonTips = fShowBalloonTips;
+
+        #region  Internal Variables
+
+        private readonly INotifyIconCallback notifyIconCallback;
+        private bool                         showBalloonTips;
+        private List<PowerPlan>              plans;
+        private const uint                   ACCESS_SCHEME = 16;
+        private PowerPlan                    ACPlan;
+        private PowerPlan                    BatteryPlan;
+
+        #endregion
 
         #region Win32 Power API
 

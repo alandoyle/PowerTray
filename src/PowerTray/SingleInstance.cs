@@ -1,6 +1,6 @@
 ﻿/* 
  * This file is part of PowerTray <https://github.com/alandoyle/PowerTray>
- * Copyright (c) 2020-2021 Alan Doyle.
+ * Copyright (c) 2020-2023 Alan Doyle.
  * 
  * This program is free software: you can redistribute it and/or modify  
  * it under the terms of the GNU General Public License as published by  
@@ -32,16 +32,12 @@ namespace PowerTray
         /// </summary>
         public static bool Start()
         {
-            bool singleInstance = false;
-
-            string assemblyName = Version.Name;
-
             // Note: using local mutex, so multiple instantiations are still 
             // possible across different sessions.
-            string mutexName = String.Format("Local\\{0}", assemblyName);
+            string mutexName = $"Local\\{Version.Name}";
 
-            mutex = new Mutex(true, mutexName, out singleInstance);
-            return singleInstance;
+            mutex = new Mutex(true, mutexName, out bool singleInstance);
+            return (singleInstance);
         }
 
         /// <summary>
@@ -49,10 +45,7 @@ namespace PowerTray
         /// </summary>
         static public void Stop()
         {
-            if (mutex != null)
-            {
-                mutex.ReleaseMutex();
-            }
+            mutex?.ReleaseMutex();
         }
     }
 }

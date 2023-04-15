@@ -8,10 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>PowerTray</RootNamespace>
     <AssemblyName>PowerTray</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,7 +37,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>green-full-battery-multi-size.ico</ApplicationIcon>
+    <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -96,29 +98,33 @@
     <Compile Include="frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="IconList.cs" />
     <Compile Include="LocalSettings.cs" />
     <Compile Include="NotifyTrayAppContext.cs" />
     <Compile Include="PowerManager.cs" />
     <Compile Include="PowerTrayAppContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SingleInstance.cs" />
+    <Compile Include="PowerPlans.cs" />
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Build\build.ini" />
     <None Include="Build\postbuild.cmd" />
     <None Include="Build\prebuild.cmd" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -131,66 +137,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\25-percent-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\50-percent-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\75-percent-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\almost-empty-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\almost-full-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\empty-battery-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\full-battery-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="App.ico" />
     <None Include="res\PowerTray.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\red-25-percent-multi-size.ico" />
+    <None Include="res\White\50-percent-multi-size.ico" />
+    <None Include="res\White\75-percent-multi-size.ico" />
+    <None Include="res\White\almost-full-multi-size.ico" />
+    <None Include="res\White\full-battery-multi-size.ico" />
+    <None Include="res\White\plug-multi-size.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\red-50-percent-multi-size.ico" />
+    <None Include="res\Black\50-percent-multi-size.ico" />
+    <None Include="res\Black\75-percent-multi-size.ico" />
+    <None Include="res\Black\almost-full-multi-size.ico" />
+    <None Include="res\Black\full-battery-multi-size.ico" />
+    <None Include="res\Black\plug-multi-size.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\red-75-percent-multi-size.ico" />
+    <None Include="res\Red\25-percent-multi-size.ico" />
+    <None Include="res\Red\almost-empty-multi-size.ico" />
+    <None Include="res\Red\empty-battery-multi-size.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\red-almost-empty-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\red-almost-full-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\red-empty-battery-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\red-full-battery-multi-size.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="green-almost-full-multi-size.ico" />
-    <Content Include="green-full-battery-multi-size.ico" />
-    <None Include="res\plug-multi-size.ico" />
-    <None Include="res\red-full-battery-multi-size1.ico" />
-    <None Include="res\red-almost-full-multi-size1.ico" />
-    <None Include="res\red-75-percent-multi-size1.ico" />
-    <None Include="res\green-full-battery-multi-size.ico" />
-    <None Include="res\green-empty-battery-multi-size.ico" />
-    <None Include="res\green-almost-full-multi-size.ico" />
-    <None Include="res\green-almost-empty-multi-size.ico" />
-    <None Include="res\green-75-percent-multi-size.ico" />
-    <None Include="res\green-50-percent-multi-size.ico" />
-    <None Include="res\green-25-percent-multi-size.ico" />
+    <None Include="res\Green\full-battery-multi-size.ico" />
+    <None Include="res\Green\empty-battery-multi-size.ico" />
+    <None Include="res\Green\almost-full-multi-size.ico" />
+    <None Include="res\Green\almost-empty-multi-size.ico" />
+    <None Include="res\Green\75-percent-multi-size.ico" />
+    <None Include="res\Green\50-percent-multi-size.ico" />
+    <None Include="res\Green\25-percent-multi-size.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -199,4 +175,13 @@
   <PropertyGroup>
     <PostBuildEvent>"$(ProjectDir)\Build\postbuild.cmd" "$(ProjectName)" "$(ConfigurationName)" "$(ProjectDir)"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\System.Runtime.WindowsRuntime.4.6.0\build\net461\System.Runtime.WindowsRuntime.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.4.6.0\build\net461\System.Runtime.WindowsRuntime.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.4.6.0\build\net461\System.Runtime.WindowsRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.4.6.0\build\net461\System.Runtime.WindowsRuntime.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.6.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.6.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets'))" />
+  </Target>
+  <Import Project="..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.6.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.UI.Xaml.4.6.0\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets')" />
 </Project>

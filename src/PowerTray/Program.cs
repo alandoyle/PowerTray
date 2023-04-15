@@ -1,6 +1,6 @@
 ﻿/* 
  * This file is part of PowerTray <https://github.com/alandoyle/PowerTray>
- * Copyright (c) 2020-2021 Alan Doyle.
+ * Copyright (c) 2020-2023 Alan Doyle.
  * 
  * This program is free software: you can redistribute it and/or modify  
  * it under the terms of the GNU General Public License as published by  
@@ -16,7 +16,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace PowerTray
@@ -27,8 +26,30 @@ namespace PowerTray
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            bool fixonly = false;
+            bool isQuiet = true;
+
+            // Check the arguments first
+            //
+            if ((args.Length == 1) && (args[0].StartsWith("-fix-powerplans")))
+            {
+                fixonly = true;
+                isQuiet = args[0].CompareTo("-fix-powerplans-quiet") == 0;
+            }
+
+            // Repair the standard power plans (if necessary)
+            //
+            PowerPlans powerplans = new PowerPlans(isQuiet, fixonly);    
+            powerplans.Fix();
+
+            // Check if we only want to fix the power plans.
+            //
+            if (fixonly) { return; }
+
+            // Run only a single instance
+            //
             if (SingleInstance.Start())
             {
                 try
@@ -45,7 +66,7 @@ namespace PowerTray
             else
             {
                 MessageBox.Show("\t" + Version.Name + " is already running!\t\n",
-                                Version.Name + " v" + Version.Full,
+                                $"{Version.Name} v{Version.Short} build {Version.Build}",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }

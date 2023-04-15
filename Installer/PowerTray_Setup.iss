@@ -12,7 +12,7 @@
 #define MyAppVersion         (FileExists(MyAppMainFile) ? GetVersionNumbersString(MyAppMainFile) : "*** APP MISSING : " + MyAppMainFile + " ***" )
 #define MySimpleAppVersion 	 SimpleVersion(MyAppVersion)
 
-#define MyAppName            "Power SysTray Replacement"
+#define MyAppName            MyBaseName
 #define MyAppVerName         MyAppName + " " + MySimpleAppVersion
 #define MyAppPublisher       "Alan Doyle"
 #define MyAppCopyright       "© 2020-" + GetDateTimeString('yyyy', '', '') + " " + MyAppPublisher
@@ -42,13 +42,11 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 AppCopyright={#MyAppCopyright}
 DefaultDirName={commonpf}\PowerTray
-;LicenseFile=text\GPLv3.TXT
 OutputDir=Output
 OutputBaseFilename={#MyAppInstall}
 Compression=lzma/Max
 SolidCompression=true
-UninstallLogMode=new
-MinVersion=0,10.0.000
+MinVersion=0,10.0.18362
 ShowLanguageDialog=no
 SetupIconFile=install_app.ico
 PrivilegesRequired=admin
@@ -68,6 +66,10 @@ AllowUNCPath=False
 AppendDefaultDirName=False
 LicenseFile=..\LICENSE
 AlwaysShowDirOnReadyPage=True
+DefaultGroupName=PowerTray
+AlwaysShowGroupOnReadyPage=True
+DisableProgramGroupPage=yes
+UninstallDisplayIcon={app}\PowerTray.exe
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -84,10 +86,30 @@ Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explor
 Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "PowerTray"; ValueData: "{app}\PowerTray.exe"; Flags: uninsdeletekey
 
 [Run]
-Filename: "{sys}\powercfg.exe"; Parameters: "-duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61"; WorkingDir: "{sys}"; Flags: runhidden; Description: "Enable 'Ultimate Performance'"; StatusMsg: "Enabling 'Ultimate Performance' Power Plan"; Check: Not IsPPInstalled
+Filename: "{app}\PowerTray.exe"; Parameters: "-fix-powerplans-quiet"; WorkingDir: "{app}"; Flags: runhidden; Description: "Fixing up Power Plans"; StatusMsg: "Fixing up Power Plans";
+
+[Icons]
+Name: "{group}\PowerTray"; Filename: "{app}\PowerTray.exe"; WorkingDir: "{app}"; IconFilename: "{app}\PowerTray.exe"; IconIndex: 0
+Name: "{group}\Fix up Power Plans"; Filename: "{app}\PowerTray.exe"; WorkingDir: "{app}"; Flags: runminimized; IconFilename: "{sys}\powercfg.cpl"; Parameters: "-fix-powerplans"; AfterInstall: SetElevationBit('{group}\Fix up Power Plans.lnk')
 
 [Code]
-function IsPPInstalled(): Boolean;
+procedure SetElevationBit(Filename: string);
+var
+  Buffer: string;
+  Stream: TStream;
 begin
-  Result := RegValueExists(HKEY_LOCAL_MACHINE, 'SYSTEM\CurrentControlSet\Control\Power\User\Default\PowerSchemes\e9a42b02-d5df-448d-aa00-03f14749eb61', 'FriendlyName');
+  Filename := ExpandConstant(Filename);
+  Log('Setting elevation bit for ' + Filename);
+
+  Stream := TFileStream.Create(FileName, fmOpenReadWrite);
+  try
+    Stream.Seek(21, soFromBeginning);
+    SetLength(Buffer, 1);
+    Stream.ReadBuffer(Buffer, 1);
+    Buffer[1] := Chr(Ord(Buffer[1]) or $20);
+    Stream.Seek(-1, soFromCurrent);
+    Stream.WriteBuffer(Buffer, 1);
+  finally
+    Stream.Free;
+  end;
 end;

@@ -19,7 +19,7 @@ namespace PowerTray.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,6 +57,56 @@ namespace PowerTray.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon black_50_percent {
+            get {
+                object obj = ResourceManager.GetObject("black_50_percent", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon black_75_percent {
+            get {
+                object obj = ResourceManager.GetObject("black_75_percent", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon black_almost_full {
+            get {
+                object obj = ResourceManager.GetObject("black_almost_full", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon black_full_battery {
+            get {
+                object obj = ResourceManager.GetObject("black_full_battery", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon black_plug {
+            get {
+                object obj = ResourceManager.GetObject("black_plug", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -116,16 +166,6 @@ namespace PowerTray.Properties {
         internal static System.Drawing.Icon green_empty_battery {
             get {
                 object obj = ResourceManager.GetObject("green_empty_battery", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon plug_multi_size {
-            get {
-                object obj = ResourceManager.GetObject("plug_multi_size", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -206,6 +246,16 @@ namespace PowerTray.Properties {
         internal static System.Drawing.Icon white_full_battery {
             get {
                 object obj = ResourceManager.GetObject("white_full_battery", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon white_plug {
+            get {
+                object obj = ResourceManager.GetObject("white_plug", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

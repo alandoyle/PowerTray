@@ -1,5 +1,5 @@
 /******************************************************/
-/* Auto-generated [16:47:25 2021/12/01] - DO NOT EDIT */
+/* Auto-generated [19:52:04 2023/04/15] - DO NOT EDIT */
 /******************************************************/
 
 /*******************************************************************************************/
@@ -13,27 +13,27 @@ namespace PowerTray
 	public class Version
 	{
 		public const string Name = "PowerTray";
-		public const string FriendlyName = "Power Tray Icon Replacement";
+		public const string FriendlyName = "Advanced Power Tray Icon";
  
 		public const string PublisherName = "Alan Doyle";
 		public const string PublisherURL = "https://github.com/AlanDoyle/PowerTray";
 
 		public const ushort Major = 1;
-		public const ushort Minor = 0;
-		public const ushort Revision = 1;
-		public const ushort Build = 118;
+		public const ushort Minor = 1;
+		public const ushort Revision = 2;
+		public const ushort Build = 297;
 		public const string Codename = "Heimdall";
 
-		public const string Full = "1.0.1.118";
-		public const string Short = "1.0.1";
-		public const string Tiny = "1.0";
+		public const string Full = "1.1.2.297";
+		public const string Short = "1.1.2";
+		public const string Tiny = "1.1";
 		public const string BuildInfo = "";
 
 		public const string StartYear = "2020";
-		public const string BuiltYear = "2021";
-		public const string BuildDate = "  1 2021 16:47:25";
-		public const string BuildDateShort = "01/12/2021";
-		public const string BuildDateComp = "202112011647";
+		public const string BuiltYear = "2023";
+		public const string BuildDate = "Apr 15 2023 19:52:04";
+		public const string BuildDateShort = "15/04/2023";
+		public const string BuildDateComp = "202304151952";
 		public const string BuiltBy = "aland";
 	}
 }

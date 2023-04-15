@@ -1,6 +1,6 @@
 ﻿/* 
  * This file is part of PowerTray <https://github.com/alandoyle/PowerTray>
- * Copyright (c) 2020-2021 Alan Doyle.
+ * Copyright (c) 2020-2023 Alan Doyle.
  * 
  * This program is free software: you can redistribute it and/or modify  
  * it under the terms of the GNU General Public License as published by  
@@ -22,40 +22,19 @@ using System.Windows.Forms;
 
 namespace PowerTray
 {
-    public interface NotifyIconCallback
+    public interface INotifyIconCallback
     {
         void UpdateIcon(bool bUpdateBalloon);
     }
 
     public class NotifyTrayAppContext : ApplicationContext
     {
-        private NotifyIcon notifyIcon = new NotifyIcon();
-
-        /// <summary>
-        /// Returns pointer to SysTray notification icon.
-        /// </summary>
-        /// <returns></returns>
-        public NotifyIcon GetNotifyIcon()
-        {
-            return (notifyIcon);
-        }
-
-        /// <summary>
-        /// Sets the icon to use in the SysTray
-        /// </summary>
-        /// <param name="icon"></param>
-        public void SetNotifyIcon(Icon icon)
-        {
-            notifyIcon.Icon = icon;
-        }
-
-        /// <summary>
+         /// <summary>
         /// Sets the tooltip for the SysTray icon
         /// </summary>
-        /// <param name="text"></param>
         public void SetNotifyText(string text, bool bUpdateBalloon)
         {
-            notifyIcon.Text = text;
+            notifyIcon.Text    = text;
             notifyIcon.Visible = true;
 
             if (bUpdateBalloon)
@@ -65,49 +44,45 @@ namespace PowerTray
         }
 
         /// <summary>
+        /// Returns pointer to SysTray notification icon.
+        /// </summary>
+        public NotifyIcon GetNotifyIcon() => (notifyIcon);
+
+        /// <summary>
+        /// Sets the icon to use in the SysTray
+        /// </summary>
+        public void SetNotifyIcon(Icon icon) => notifyIcon.Icon = icon;
+
+        /// <summary>
         /// Sets the Right Click menu for the SysTray icon.
         /// </summary>
-        /// <param name="contextMenuStrip"></param>
-        public void SetNotifyContextMenuStrip(ContextMenuStrip contextMenuStrip)
-        {
-            notifyIcon.ContextMenuStrip = contextMenuStrip;
-        }
+        public void SetNotifyContextMenuStrip(ContextMenuStrip contextMenuStrip) => notifyIcon.ContextMenuStrip = contextMenuStrip;
 
         /// <summary>
         /// Set SysTray icon visibility.
         /// </summary>
-        /// <param name="visibility"></param>
-        public void SetNotifyVisibility(bool visibility)
-        {
-            notifyIcon.Visible = visibility;
-        }
+        public void SetNotifyVisibility(bool visibility) => notifyIcon.Visible = visibility;
 
         /// <summary>
         /// Set the double-click event handler
         /// </summary>
-        /// <param name="doubleclickEvent"></param>
-        public void SetNotifyDoubleClick(Action<object, EventArgs> doubleclickEvent)
-        {
-            notifyIcon.DoubleClick += new EventHandler(doubleclickEvent);
-        }
+        public void SetNotifyDoubleClick(Action<object, EventArgs> doubleclickEvent) => notifyIcon.DoubleClick += new EventHandler(doubleclickEvent);
 
         /// <summary>
         /// Set the MouseUp event handler for the SysTray icon
         /// </summary>
-        /// <param name="onNotifyIconMouseUp"></param>
-        public void SetNotifyMouseUp(MouseEventHandler onNotifyIconMouseUp)
-        {
-            notifyIcon.MouseUp += onNotifyIconMouseUp;
-        }
+        public void SetNotifyMouseUp(MouseEventHandler onNotifyIconMouseUp) => notifyIcon.MouseUp += onNotifyIconMouseUp;
 
         /// <summary>
         /// Set the ContextMenuStripOpening event handler.
         /// </summary>
-        /// <param name="onContextMenuStripOpening"></param>
-        public void SetNotifyContextMenuStripOpening(CancelEventHandler onContextMenuStripOpening)
-        {
-            notifyIcon.ContextMenuStrip.Opening += onContextMenuStripOpening;
-        }
+        public void SetNotifyContextMenuStripOpening(CancelEventHandler onContextMenuStripOpening) => notifyIcon.ContextMenuStrip.Opening += onContextMenuStripOpening;
+
+        #region Internal Variables
+
+        private readonly NotifyIcon notifyIcon = new NotifyIcon();
+
+        #endregion
     }
 }
 

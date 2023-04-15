@@ -1,6 +1,6 @@
 ﻿/* 
  * This file is part of PowerTray <https://github.com/alandoyle/PowerTray>
- * Copyright (c) 2020-2021 Alan Doyle.
+ * Copyright (c) 2020-2023 Alan Doyle.
  * 
  * This program is free software: you can redistribute it and/or modify  
  * it under the terms of the GNU General Public License as published by  
@@ -22,54 +22,53 @@ using System.Windows.Forms;
 
 namespace PowerTray
 {
-    public partial class frmAbout : Form
+    public partial class FrmAbout : Form
     {
-        private PowerTrayAppContext powerTrayAppContext;
+        private readonly PowerTrayAppContext powerTrayAppContext;
 
-        public frmAbout(PowerTrayAppContext appContext)
+        public FrmAbout(PowerTrayAppContext appContext)
         {
             powerTrayAppContext = appContext;
             powerTrayAppContext.AboutOpened = true;
             InitializeComponent();
         }
 
-        private void frmAbout_Load(object sender, EventArgs e)
+        private void FrmAbout_Load(object sender, EventArgs e)
         {
-            this.Text = Version.Name + " v" + Version.Full;
-            lblName.Text = Version.Name;
-            lblDescription.Text = Version.FriendlyName;
-            llURL.Text = Version.PublisherURL;
+            this.Text              = $"{Version.Name} v{Version.Short} build {Version.Build}";
+            Label_Name.Text        = Version.Name;
+            Label_Description.Text = Version.FriendlyName;
+            LinkLabel_URL.Text     = Version.PublisherURL;
 
+            // Place "About..." dialog on top of all other windows
+            //
             SetWindowPos(this.Handle, HWND_TOPMOST, 0, 0, 0, 0, TOPMOST_FLAGS);
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void BtnOK_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void llURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void Button_Exit_Click(object sender, EventArgs e)
         {
-            Process.Start(llURL.Text);
+            DialogResult dialogResult = MessageBox.Show(
+                "Are you sure you want to exit?",
+                $"{Version.Name} v{Version.Short} build {Version.Build}",
+                MessageBoxButtons.YesNo);
+            if(dialogResult == DialogResult.Yes)
+            {
+                powerTrayAppContext.ExitThread();
+            }
         }
 
-        private void llIconURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start(llIconURL.Text);
+        private void LinkLabel_URL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start(LinkLabel_URL.Text);
 
-        }
+        private void LinkLabel_IconURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => Process.Start(LinkLabel_IconURL.Text);
 
-        private void lblName_DoubleClick(object sender, EventArgs e)
-        {
-            powerTrayAppContext.ExitThread();
-        }
+        private void FrmAbout_FormClosing(object sender, FormClosingEventArgs e) => powerTrayAppContext.AboutOpened = false;
 
-        private void frmAbout_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            powerTrayAppContext.AboutOpened = false;
-        }
-
-        #region Win32 Details
+        #region Win32 API
 
         private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
         private const UInt32 SWP_NOSIZE = 0x0001;

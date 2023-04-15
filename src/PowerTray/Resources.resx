@@ -119,48 +119,63 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="green_25_percent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\green-25-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Green\25-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="green_50_percent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\green-50-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Green\50-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="green_75_percent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\green-75-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Green\75-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="green_almost_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\green-almost-empty-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Green\almost-empty-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="green_almost_full" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\green-almost-full-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Green\almost-full-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="green_empty_battery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\green-empty-battery-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Green\empty-battery-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="PowerTray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\PowerTray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="red_25_percent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\red-25-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Red\25-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="red_almost_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\red-almost-empty-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Red\almost-empty-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="red_empty_battery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\red-empty-battery-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\Red\empty-battery-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="white_50_percent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\50-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\White\50-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="white_75_percent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\75-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\White\75-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="white_almost_full" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\almost-full-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\White\almost-full-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="white_full_battery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\full-battery-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\res\White\full-battery-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plug_multi_size" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\plug-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="white_plug" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\White\plug-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="black_50_percent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\Black\50-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="black_75_percent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\Black\75-percent-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="black_almost_full" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\Black\almost-full-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="black_full_battery" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\Black\full-battery-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="black_plug" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\Black\plug-multi-size.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

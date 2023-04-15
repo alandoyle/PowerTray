@@ -1,6 +1,6 @@
 ﻿namespace PowerTray
 {
-    partial class frmAbout
+    partial class FrmAbout
     {
         /// <summary>
         /// Required designer variable.
@@ -28,119 +28,130 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
-            this.pbLogo = new System.Windows.Forms.PictureBox();
-            this.lblName = new System.Windows.Forms.Label();
-            this.lblDescription = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.llURL = new System.Windows.Forms.LinkLabel();
-            this.lblGPL = new System.Windows.Forms.Label();
-            this.lblIcon = new System.Windows.Forms.Label();
-            this.llIconURL = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAbout));
+            this.PictureBox_Logo = new System.Windows.Forms.PictureBox();
+            this.Label_Name = new System.Windows.Forms.Label();
+            this.Label_Description = new System.Windows.Forms.Label();
+            this.Button_OK = new System.Windows.Forms.Button();
+            this.LinkLabel_URL = new System.Windows.Forms.LinkLabel();
+            this.Label_GPL = new System.Windows.Forms.Label();
+            this.Label_Icon = new System.Windows.Forms.Label();
+            this.LinkLabel_IconURL = new System.Windows.Forms.LinkLabel();
+            this.Button_Exit = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logo)).BeginInit();
             this.SuspendLayout();
             // 
-            // pbLogo
+            // PictureBox_Logo
             // 
-            this.pbLogo.Image = global::PowerTray.Properties.Resources.PowerTray;
-            this.pbLogo.Location = new System.Drawing.Point(12, -9);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(132, 132);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
+            this.PictureBox_Logo.Image = global::PowerTray.Properties.Resources.PowerTray;
+            this.PictureBox_Logo.Location = new System.Drawing.Point(12, -9);
+            this.PictureBox_Logo.Name = "Logo";
+            this.PictureBox_Logo.Size = new System.Drawing.Size(132, 132);
+            this.PictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox_Logo.TabIndex = 0;
+            this.PictureBox_Logo.TabStop = false;
             // 
-            // lblName
+            // Label_Name
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(156, 13);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(154, 37);
-            this.lblName.TabIndex = 1;
-            this.lblName.Text = "<NAME>";
-            this.lblName.DoubleClick += new System.EventHandler(this.lblName_DoubleClick);
+            this.Label_Name.AutoSize = true;
+            this.Label_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Name.Location = new System.Drawing.Point(156, 13);
+            this.Label_Name.Name = "Name";
+            this.Label_Name.Size = new System.Drawing.Size(188, 46);
+            this.Label_Name.TabIndex = 1;
+            this.Label_Name.Text = "<NAME>";
             // 
-            // lblDescription
+            // Label_Description
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(160, 50);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(92, 13);
-            this.lblDescription.TabIndex = 2;
-            this.lblDescription.Text = "<DESCRIPTION>";
+            this.Label_Description.AutoSize = true;
+            this.Label_Description.Location = new System.Drawing.Point(160, 50);
+            this.Label_Description.Name = "Description";
+            this.Label_Description.Size = new System.Drawing.Size(102, 15);
+            this.Label_Description.TabIndex = 2;
+            this.Label_Description.Text = "<DESCRIPTION>";
             // 
-            // btnOK
+            // Button_OK
             // 
-            this.btnOK.Location = new System.Drawing.Point(339, 304);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 5;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.Button_OK.Location = new System.Drawing.Point(339, 304);
+            this.Button_OK.Name = "OK";
+            this.Button_OK.Size = new System.Drawing.Size(75, 23);
+            this.Button_OK.TabIndex = 5;
+            this.Button_OK.Text = "OK";
+            this.Button_OK.UseVisualStyleBackColor = true;
+            this.Button_OK.Click += new System.EventHandler(this.BtnOK_Click);
             // 
-            // llURL
+            // LinkLabel_URL
             // 
-            this.llURL.AutoSize = true;
-            this.llURL.Location = new System.Drawing.Point(160, 75);
-            this.llURL.Name = "llURL";
-            this.llURL.Size = new System.Drawing.Size(41, 13);
-            this.llURL.TabIndex = 6;
-            this.llURL.TabStop = true;
-            this.llURL.Text = "<URL>";
-            this.llURL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llURL_LinkClicked);
+            this.LinkLabel_URL.AutoSize = true;
+            this.LinkLabel_URL.Location = new System.Drawing.Point(160, 75);
+            this.LinkLabel_URL.Name = "URL";
+            this.LinkLabel_URL.Size = new System.Drawing.Size(46, 15);
+            this.LinkLabel_URL.TabIndex = 6;
+            this.LinkLabel_URL.TabStop = true;
+            this.LinkLabel_URL.Text = "<URL>";
+            this.LinkLabel_URL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_URL_LinkClicked);
             // 
-            // lblGPL
+            // Label_GPL
             // 
-            this.lblGPL.AutoSize = true;
-            this.lblGPL.Location = new System.Drawing.Point(12, 126);
-            this.lblGPL.Name = "lblGPL";
-            this.lblGPL.Size = new System.Drawing.Size(402, 143);
-            this.lblGPL.TabIndex = 7;
-            this.lblGPL.Text = resources.GetString("lblGPL.Text");
+            this.Label_GPL.AutoSize = true;
+            this.Label_GPL.Location = new System.Drawing.Point(12, 126);
+            this.Label_GPL.Name = "GPL";
+            this.Label_GPL.Size = new System.Drawing.Size(442, 165);
+            this.Label_GPL.TabIndex = 7;
+            this.Label_GPL.Text = resources.GetString("GPL.Text");
             // 
-            // lblIcon
+            // Label_Icon
             // 
-            this.lblIcon.AutoSize = true;
-            this.lblIcon.Location = new System.Drawing.Point(12, 280);
-            this.lblIcon.Name = "lblIcon";
-            this.lblIcon.Size = new System.Drawing.Size(56, 13);
-            this.lblIcon.TabIndex = 8;
-            this.lblIcon.Text = "Icons from";
+            this.Label_Icon.AutoSize = true;
+            this.Label_Icon.Location = new System.Drawing.Point(12, 280);
+            this.Label_Icon.Name = "Icon";
+            this.Label_Icon.Size = new System.Drawing.Size(64, 15);
+            this.Label_Icon.TabIndex = 8;
+            this.Label_Icon.Text = "Icons from";
             // 
-            // llIconURL
+            // LinkLabel_IconURL
             // 
-            this.llIconURL.AutoSize = true;
-            this.llIconURL.Location = new System.Drawing.Point(66, 280);
-            this.llIconURL.Name = "llIconURL";
-            this.llIconURL.Size = new System.Drawing.Size(130, 13);
-            this.llIconURL.TabIndex = 9;
-            this.llIconURL.TabStop = true;
-            this.llIconURL.Text = "https://www.iconsdb.com";
-            this.llIconURL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llIconURL_LinkClicked);
+            this.LinkLabel_IconURL.AutoSize = true;
+            this.LinkLabel_IconURL.Location = new System.Drawing.Point(66, 280);
+            this.LinkLabel_IconURL.Name = "IconURL";
+            this.LinkLabel_IconURL.Size = new System.Drawing.Size(142, 15);
+            this.LinkLabel_IconURL.TabIndex = 9;
+            this.LinkLabel_IconURL.TabStop = true;
+            this.LinkLabel_IconURL.Text = "https://www.iconsdb.com";
+            this.LinkLabel_IconURL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_IconURL_LinkClicked);
             // 
-            // frmAbout
+            // Button_Exit
+            // 
+            this.Button_Exit.Location = new System.Drawing.Point(15, 304);
+            this.Button_Exit.Name = "btnExit";
+            this.Button_Exit.Size = new System.Drawing.Size(75, 23);
+            this.Button_Exit.TabIndex = 10;
+            this.Button_Exit.Text = "Exit";
+            this.Button_Exit.UseVisualStyleBackColor = true;
+            this.Button_Exit.Click += new System.EventHandler(this.Button_Exit_Click);
+            // 
+            // FrmAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 339);
-            this.Controls.Add(this.llIconURL);
-            this.Controls.Add(this.lblIcon);
-            this.Controls.Add(this.lblGPL);
-            this.Controls.Add(this.llURL);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.lblDescription);
-            this.Controls.Add(this.lblName);
-            this.Controls.Add(this.pbLogo);
+            this.Controls.Add(this.Button_Exit);
+            this.Controls.Add(this.LinkLabel_IconURL);
+            this.Controls.Add(this.Label_Icon);
+            this.Controls.Add(this.Label_GPL);
+            this.Controls.Add(this.LinkLabel_URL);
+            this.Controls.Add(this.Button_OK);
+            this.Controls.Add(this.Label_Description);
+            this.Controls.Add(this.Label_Name);
+            this.Controls.Add(this.PictureBox_Logo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmAbout";
+            this.Name = "About";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAbout";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmAbout_FormClosing);
-            this.Load += new System.EventHandler(this.frmAbout_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            this.Text = "About";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAbout_FormClosing);
+            this.Load += new System.EventHandler(this.FrmAbout_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,13 +159,14 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbLogo;
-        private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblDescription;
-        private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.LinkLabel llURL;
-        private System.Windows.Forms.Label lblGPL;
-        private System.Windows.Forms.Label lblIcon;
-        private System.Windows.Forms.LinkLabel llIconURL;
+        private System.Windows.Forms.PictureBox PictureBox_Logo;
+        private System.Windows.Forms.Label Label_Name;
+        private System.Windows.Forms.Label Label_Description;
+        private System.Windows.Forms.Button Button_OK;
+        private System.Windows.Forms.LinkLabel LinkLabel_URL;
+        private System.Windows.Forms.Label Label_GPL;
+        private System.Windows.Forms.Label Label_Icon;
+        private System.Windows.Forms.LinkLabel LinkLabel_IconURL;
+        private System.Windows.Forms.Button Button_Exit;
     }
 }
